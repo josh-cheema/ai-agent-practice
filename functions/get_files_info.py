@@ -12,7 +12,7 @@ def get_files_info(working_directory: str, directory: str = ".") -> str:
         if not os.path.isdir(full_path):
             return f'Error: "{directory}" is not a directory'
 
-        result = "Result for current directory:\n"
+        result = f'Result for "{directory}" directory:\n'
         for item in os.listdir(full_path):
             try:
                 size = os.path.getsize(os.path.join(full_path, item))
@@ -24,3 +24,20 @@ def get_files_info(working_directory: str, directory: str = ".") -> str:
         return result
     except Exception as e:
         return f'Error: {str(e)}'
+
+schema_get_files_info = {
+    "type": "function",
+    "function": {
+        "name": "get_files_info",
+        "description": "Lists files in a specified directory relative to the working directory, providing file size and directory status",
+        "parameters": {
+            "type": "object",
+            "properties": {
+                "directory": {
+                    "type": "string",
+                    "description": "Directory path to list files from, relative to the working directory (default is the working directory itself)",
+                },
+            },
+        },
+    },
+}

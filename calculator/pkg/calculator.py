@@ -62,3 +62,15 @@ class Calculator:
         b = values.pop()
         a = values.pop()
         values.append(self.operators[operator](a, b))
+
+
+if __name__ == "__main__":
+    import sys
+    calc = Calculator()
+    if len(sys.argv) > 1:
+        expr = " ".join(sys.argv[1:])
+        result = calc.evaluate(expr)
+        if result is not None:
+            print(result)
+    else:
+        print("Usage: python calculator.py <expression>")
