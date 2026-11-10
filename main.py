@@ -45,7 +45,6 @@ for _ in range(20):
             if args.verbose:
                 print(f"-> {result_message['content']}")
 
-
     if args.verbose:
         print(f"User prompt: {args.user_prompt}")
         print(f"Prompt tokens: {response.usage.prompt_tokens}")

@@ -66,6 +66,7 @@ class Calculator:
 
 if __name__ == "__main__":
     import sys
+
     calc = Calculator()
     if len(sys.argv) > 1:
         expr = " ".join(sys.argv[1:])
