@@ -36,6 +36,7 @@ for _ in range(20):
     message = response.choices[0].message
     messages.append(message)
     if message.tool_calls:
+        print(f"Response: \n{message.content}")
         for tool_call in message.tool_calls:
             result_message = call_function(tool_call, verbose=args.verbose)
             messages.append(result_message)
@@ -45,11 +46,12 @@ for _ in range(20):
                 print(f"-> {result_message['content']}")
 
     if args.verbose:
-        print(f"User prompt: {args.user_prompt}")
+        if len(messages) == 3:
+            print(f"User prompt: {args.user_prompt}")
         print(f"Prompt tokens: {response.usage.prompt_tokens}")
         print(f"Response tokens: {response.usage.completion_tokens}")
-    if not response.choices[0].message.tool_calls:
-        print(f"Response: \n{response.choices[0].message.content}")
+    if not message.tool_calls:
+        print(f"Response: \n{message.content}")
         break
 
 else:
