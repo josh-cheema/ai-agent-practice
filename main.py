@@ -37,7 +37,6 @@ for _ in range(20):
     messages.append(message)
     if message.tool_calls:
         for tool_call in message.tool_calls:
-            function_args = json.loads(tool_call.function.arguments or "{}")
             result_message = call_function(tool_call, verbose=args.verbose)
             messages.append(result_message)
             if not result_message.get("content"):
